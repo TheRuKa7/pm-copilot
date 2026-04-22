@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+htmlcov/
+.coverage
+
+.env
+.env.local
+*.key
+
+.vscode/
+.idea/
+.DS_Store
+
+# Langfuse data
+lf-pg/
+
+# Outputs
+runs/
+outputs/
+data/

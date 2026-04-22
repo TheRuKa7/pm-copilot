@@ -1,0 +1,68 @@
+[project]
+name = "pm-copilot"
+version = "0.1.0"
+description = "Agentic multi-step PM copilot — LangGraph + Claude + bidirectional MCP"
+authors = [{ name = "Rushil Kaul", email = "theruka007@outlook.com" }]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.13"
+
+dependencies = [
+    "anthropic>=0.40",
+    "langgraph>=0.2",
+    "langchain-core>=0.3",
+    "langchain-anthropic>=0.3",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sse-starlette>=2.1",
+    "httpx>=0.28",
+    "rich>=13.9",
+    "typer>=0.13",
+    "langfuse>=2.56",
+]
+
+[project.optional-dependencies]
+tools = [
+    "tavily-python>=0.5",
+    "pandas>=2.2",
+    "polars>=1.12",
+    "duckdb>=1.1",
+]
+mcp = [
+    "mcp>=1.0",
+]
+dev = [
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+]
+
+[project.scripts]
+pm-copilot = "pm_copilot.__main__:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pm_copilot"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-ra --cov=pm_copilot"
